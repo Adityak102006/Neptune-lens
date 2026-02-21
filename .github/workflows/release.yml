@@ -1,0 +1,65 @@
+name: Build and Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Cache cargo
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            target
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+
+      - name: Build release
+        run: cargo build --release
+
+      - name: Download CLIP model
+        run: |
+          mkdir -p target/release/models
+          curl -L -o target/release/models/clip-vit-b32-vision.onnx "https://huggingface.co/Qdrant/clip-ViT-B-32-vision/resolve/main/model.onnx"
+        shell: bash
+
+      - name: Create release archive
+        run: |
+          mkdir neptune-lens-windows
+          cp target/release/neptune-lens.exe neptune-lens-windows/
+          cp -r target/release/models neptune-lens-windows/
+          cp README.md neptune-lens-windows/
+          7z a neptune-lens-windows.zip neptune-lens-windows/*
+        shell: bash
+
+      - name: Upload Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            neptune-lens-windows.zip
+            target/release/neptune-lens.exe
+          body: |
+            ## Neptune Lens ${{ github.ref_name }}
+
+            ### Quick Start
+            1. Download `neptune-lens-windows.zip` (includes the CLIP model)
+            2. Extract to any folder
+            3. Run `neptune-lens.exe`
+
+            Or download just `neptune-lens.exe` and provide your own CLIP model in a `models/` folder.
+
+            ### Requirements
+            - Windows 10/11 (x86_64)
+            - CLIP ViT-B-32 vision ONNX model (included in the zip)

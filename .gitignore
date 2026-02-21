@@ -1,0 +1,20 @@
+# Build artifacts
+/target/
+/data/
+
+# CLIP model (large binary)
+models/*.onnx
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files  
+Thumbs.db
+.DS_Store
+
+# Build output logs
+*.txt
+!README.md
