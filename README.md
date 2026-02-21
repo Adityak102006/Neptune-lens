@@ -21,15 +21,30 @@ A **local Google Lens–style image search engine** built entirely in Rust. Inde
 ### Download
 1. Go to [**Releases**](https://github.com/Adityak102006/Neptune-lens/releases)
 2. Download `neptune-lens.exe`
-3. Download the CLIP model (`clip-vit-b32-vision.onnx`) from the release assets
-4. Place the model in a `models/` folder next to the exe:
+3. Download the CLIP model (`clip-vit-b32-vision.onnx`) and place it in a `models/` folder next to the executable.
+
+   **Option A: Manual Download**
+   Download from [Hugging Face](https://huggingface.co/Xenova/clip-vit-base-patch32/tree/main/onnx) and place it directly in the `models/` folder.
+   Alternatively, use `curl` (for tech-savvy users):
+   ```bash
+   mkdir -p models
+   curl -L -o models/clip-vit-b32-vision.onnx https://huggingface.co/Xenova/clip-vit-base-patch32/resolve/main/onnx/model.onnx
    ```
+
+   **Option B: PowerShell (Quick Install)**
+   Open PowerShell in the folder where `neptune-lens.exe` is located and run:
+   ```powershell
+   New-Item -ItemType Directory -Force -Path "models"; Invoke-WebRequest -Uri "https://huggingface.co/Xenova/clip-vit-base-patch32/resolve/main/onnx/model.onnx" -OutFile "models\clip-vit-b32-vision.onnx"
+   ```
+
+   Your folder structure should look like this:
+   ```text
    📁 your-folder/
    ├── neptune-lens.exe
    └── models/
        └── clip-vit-b32-vision.onnx
    ```
-5. Run `neptune-lens.exe`
+4. Run `neptune-lens.exe`
 
 ### Build from Source
 ```bash
@@ -41,7 +56,8 @@ cd Neptune-lens
 cargo build --release
 
 # Download the CLIP model
-# Place clip-vit-b32-vision.onnx in target/release/models/
+mkdir -p target/release/models
+curl -L -o target/release/models/clip-vit-b32-vision.onnx https://huggingface.co/Xenova/clip-vit-base-patch32/resolve/main/onnx/model.onnx
 
 # Run
 cargo run --release
