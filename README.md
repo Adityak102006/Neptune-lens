@@ -24,17 +24,17 @@ A **local Google Lens–style image search engine** built entirely in Rust. Inde
 3. Download the CLIP model (`clip-vit-b32-vision.onnx`) and place it in a `models/` folder next to the executable.
 
    **Option A: Manual Download**
-   Download from [Hugging Face](https://huggingface.co/Xenova/clip-vit-base-patch32/tree/main/onnx) and place it directly in the `models/` folder.
+   Download [visual.onnx](https://clip-as-service.s3.us-east-2.amazonaws.com/models/onnx/ViT-B-32/visual.onnx), rename it to `clip-vit-b32-vision.onnx`, and place it in the `models/` folder.
    Alternatively, use `curl` (for tech-savvy users):
    ```bash
    mkdir -p models
-   curl -L -o models/clip-vit-b32-vision.onnx https://huggingface.co/Xenova/clip-vit-base-patch32/resolve/main/onnx/model.onnx
+   curl -L -o models/clip-vit-b32-vision.onnx https://clip-as-service.s3.us-east-2.amazonaws.com/models/onnx/ViT-B-32/visual.onnx
    ```
 
    **Option B: PowerShell (Quick Install)**
    Open PowerShell in the folder where `neptune-lens.exe` is located and run:
    ```powershell
-   New-Item -ItemType Directory -Force -Path "models"; Invoke-WebRequest -Uri "https://huggingface.co/Xenova/clip-vit-base-patch32/resolve/main/onnx/model.onnx" -OutFile "models\clip-vit-b32-vision.onnx"
+   New-Item -ItemType Directory -Force -Path "models"; Invoke-WebRequest -Uri "https://clip-as-service.s3.us-east-2.amazonaws.com/models/onnx/ViT-B-32/visual.onnx" -OutFile "models\clip-vit-b32-vision.onnx"
    ```
 
    Your folder structure should look like this:
@@ -57,7 +57,7 @@ cargo build --release
 
 # Download the CLIP model
 mkdir -p target/release/models
-curl -L -o target/release/models/clip-vit-b32-vision.onnx https://huggingface.co/Xenova/clip-vit-base-patch32/resolve/main/onnx/model.onnx
+curl -L -o target/release/models/clip-vit-b32-vision.onnx https://clip-as-service.s3.us-east-2.amazonaws.com/models/onnx/ViT-B-32/visual.onnx
 
 # Run
 cargo run --release
