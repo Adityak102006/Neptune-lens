@@ -53,7 +53,7 @@ pub fn show(ui: &mut egui::Ui, state: &mut AppState) {
                 egui::Image::from_bytes(key, bytes)
                     .max_width(250.0)
                     .max_height(250.0)
-                    .rounding(8.0),
+                    .rounding(8),
             );
         } else {
             ui.colored_label(egui::Color32::RED, "Failed to load image");

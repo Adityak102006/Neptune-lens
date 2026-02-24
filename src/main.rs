@@ -15,7 +15,7 @@ fn main() -> eframe::Result<()> {
         .format_timestamp_millis()
         .init();
 
-    log::info!("Starting Neptune Lens v0.1.0");
+    log::info!("Starting Neptune Lens v0.2.0");
 
     let native_options = eframe::NativeOptions {
         viewport: egui::ViewportBuilder::default()

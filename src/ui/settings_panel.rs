@@ -11,8 +11,8 @@ pub fn show(ui: &mut egui::Ui, state: &mut AppState) {
     // Search parameters
     egui::Frame::default()
         .fill(egui::Color32::from_rgb(35, 38, 48))
-        .rounding(8.0)
-        .inner_margin(12.0)
+        .rounding(8)
+        .inner_margin(12)
         .show(ui, |ui| {
             ui.strong("Search Parameters");
             ui.add_space(8.0);
@@ -28,8 +28,8 @@ pub fn show(ui: &mut egui::Ui, state: &mut AppState) {
     // Index statistics
     egui::Frame::default()
         .fill(egui::Color32::from_rgb(35, 38, 48))
-        .rounding(8.0)
-        .inner_margin(12.0)
+        .rounding(8)
+        .inner_margin(12)
         .show(ui, |ui| {
             ui.strong("Index Statistics");
             ui.add_space(8.0);
@@ -47,8 +47,8 @@ pub fn show(ui: &mut egui::Ui, state: &mut AppState) {
     // Index management
     egui::Frame::default()
         .fill(egui::Color32::from_rgb(35, 38, 48))
-        .rounding(8.0)
-        .inner_margin(12.0)
+        .rounding(8)
+        .inner_margin(12)
         .show(ui, |ui| {
             ui.strong("Index Management");
             ui.add_space(8.0);
@@ -77,14 +77,14 @@ pub fn show(ui: &mut egui::Ui, state: &mut AppState) {
     // About section
     egui::Frame::default()
         .fill(egui::Color32::from_rgb(35, 38, 48))
-        .rounding(8.0)
-        .inner_margin(12.0)
+        .rounding(8)
+        .inner_margin(12)
         .show(ui, |ui| {
             ui.strong("About Neptune Lens");
             ui.add_space(4.0);
             ui.label("A local Google Lens–style image search engine.");
             ui.label("Built with Rust, CLIP (ViT-B-32), and cosine similarity.");
             ui.add_space(4.0);
-            ui.weak("v0.1.0");
+            ui.weak("v0.2.0");
         });
 }

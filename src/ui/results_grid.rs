@@ -49,8 +49,8 @@ pub fn show(ui: &mut egui::Ui, state: &mut AppState) {
 fn render_result_card(ui: &mut egui::Ui, result: &SearchResult, card_width: f32) {
     egui::Frame::default()
         .fill(egui::Color32::from_rgb(35, 38, 48))
-        .rounding(8.0)
-        .inner_margin(8.0)
+        .rounding(8)
+        .inner_margin(8)
         .show(ui, |ui| {
             ui.set_width(card_width - 16.0);
             ui.set_min_height(220.0);
